@@ -1,5 +1,7 @@
 /*GROUP BY*/
 
+
+
 SELECT  totaulas FROM cursos GROUP BY totaulas ORDER BY totaulas; /*Agrupa os dados de mesmo valor*/
 
 SELECT  totaulas,count(*) FROM cursos GROUP BY totaulas ORDER BY totaulas; /*Agrupa os dados de mesmo valor e mostra a quantidade de cada agrupamento*/

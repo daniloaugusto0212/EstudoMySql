@@ -27,3 +27,9 @@ insert into teste value
 select * from teste;
 
 drop table teste; /*Apagar tabela 'teste'*/
+
+alter table `tb_site.config`
+drop column imagem_descricao;
+
+update `tb_site.config`
+set titulo1 = 'CSS3', titulo2 = 'HTML5',titulo3 = 'JavaScript' where titulo = 'projeto_01';
