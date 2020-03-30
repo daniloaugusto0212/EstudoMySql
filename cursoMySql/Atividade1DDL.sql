@@ -1,12 +1,12 @@
-create database empresa;
+CREATE DATABASE empresa;
 
-use empresa;
+USE empresa;
 
-create table cargos(
-id_cargo int not null auto_increment,
-descricao_cargo varchar (50), 
-salario decimal(9,2),
-primary key (id_cargo)
+CREATE TABLE cargos(
+id_cargo INT NOT NULL AUTO_INCREMENT,
+descricao_cargo VARCHAR (50), 
+salario DECIMAL(9,2),
+PRIMARY KEY (id_cargo)
 );
-select * from cargos;
+
 
