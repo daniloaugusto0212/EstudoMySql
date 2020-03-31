@@ -142,6 +142,128 @@ describe cursos;
 desc gafanhotos;
 
 
+/*aula 11*/
+select * from gafanhotos;
+select * from cursos;
+
+/*Funções do select*/
+
+select * from cursos 
+order by nome desc; /*ordena por nome em ordem decrescente*/
+
+select * from cursos 
+order by nome; /*ordena por nome em ordem crescente*/
+
+SELECT nome, carga, ano from cursos; /*Seleciona as colunas descritas no comando*/
+
+SELECT ano, nome, carga from cursos 
+order by ano, nome; /*Seleciona as colunas ano, nome e carga nesta ordem e ordena por ano, e dentro de cada ano ordena por nome*/
+
+SELECT * FROM cursos 
+WHERE ano = '2016' order by nome; /*Seleciona todas as colunas e apenas as linhas que contem o ano 2016*/
+
+SELECT nome, carga FROM cursos
+WHERE ano = '2016' order by nome; /*Seleciona as colunas nome e carga apenas as linhas que contem o ano 2016*/
+
+SELECT nome, descricao FROM cursos 
+WHERE ano <= '2015' order by nome; /*Seleciona as linhas onde o ano é igual ou menos a 2015 e às ordena por nome*/;
+
+/*Operadores utilizados em MySql: = < > 'diferente(!= ou <>)' */
+
+SELECT nome, ano FROM cursos 
+WHERE ano BETWEEN 2014 and 2016; /*Mostra as linhas entre 2014 e 2016 usando o comando "BETWEEN"*/
+
+SELECT nome, descricao, ano FROM cursos 
+WHERE ano IN (2014, 2016) 
+ORDER BY ano; /*Mostra as linhas onde exista os anos de 2014 e 2016 usando o camando IN, e depois ordena por ano*/
+
+SELECT nome, carga, totaulas FROM cursos 
+WHERE carga > 35 AND totaulas < 30; /*Mostra onde a carga é maior que 35 e o totaulas é menor do que 30, podemos também utilizar o camndo OR*/
+
+/*Aula 12*/
+/*OPERADOR LIKE*/
+
+SELECT * FROM cursos 
+WHERE nome LIKE 'P%'; /*Mostra os dados da coluna 'nome' que começam com a letra P, independente de digitar maiúsculo ou minúsculo*/
+
+SELECT * FROM cursos 
+WHERE nome LIKE '%a'; /*Mostra os dados da coluna 'nome' que a última letra é A ou a*/
+
+SELECT * FROM cursos 
+WHERE nome LIKE '%a%';/*Mostra os dados da coluna nome que contém a letra A em qualquer lugar, mesmo que a letra estaja acentuada*/
+
+SELECT * FROM cursos 
+WHERE nome NOT LIKE '%a';/*Dados que não contém a letra 'A'*/
+
+
+SELECT * FROM cursos 
+WHERE nome LIKE 'PH%P';/*Dados que comecem com PH e terminem com P*/
+
+SELECT * FROM cursos 
+WHERE nome LIKE 'H%L_';/*O caractere _ obriga a ter qualquer caractere após a letra selecionada*/
+
+SELECT * FROM gafanhotos 
+WHERE nome LIKE '%silva%'; /*Mostra os dados onde contém silva, inclusive Silvana*/
+
+
+SELECT * FROM gafanhotos 
+WHERE nome LIKE '%_silva%';/*MOstra os dados onde contém Silva somento como sobrenome*/
+
+
+/*DISTINCT*/
+
+SELECT DISTINCT nacionalidade FROM gafanhotos;/*MOstra Os dados da coluna nacionalidade distintamente(Somente uma vez cada um dos existentes)*/
+
+SELECT DISTINCT carga FROM cursos 
+ORDER BY carga;/*MOstra Os dados da coluna carga distintamente(Somente uma vez cada um dos existentes) e em ordem numérica*/
+
+
+SELECT count(*) FROM cursos; /*Mostra a quantidade de cursos da tabela*/
+
+SELECT count(*) FROM cursos 
+WHERE carga >= 40;/*Mostra a quantidade de cursos que tem a carga maior ou igual a 40*/
+
+SELECT max(carga) FROM cursos; /*Mostra a maior carga*/
+
+SELECT max(totaulas) FROM cursos 
+WHERE ano = '2016'; /*Mostra a maior quantidade de aulas entre os curos de 2016*/
+
+/*Pode-se usar a função MIN para pegar os menores valores*/
+
+SELECT sum(totaulas) FROM cursos 
+WHERE ano = '2016'; /*Soma o totaulas dos curos de 2016*/
+
+SELECT avg(totaulas) FROM cursos 
+WHERE ano ='2016'; /*Mostra a média entre os cursos de 2016*/
+
+
+/*Exercícios*/
+/*1- Lista com todas as gafanhotas*/
+SELECT * FROM gafanhotos WHERE sexo = 'F';
+
+/*2- Lista dos que nasceram entre 01/01/2000 e 31/12/2015*/
+SELECT * FROM gafanhotos WHERE nascimento BETWEEN '2000-01-01' AND '2015-12-31';
+
+/*3- Lista de todos os homens Programadores*/
+SELECT * FROM gafanhotos WHERE prof = 'Programador' AND sexo = 'M';
+
+/*4- Lista de mulherees que nasceram no Brasil e que o nome comece com J */
+SELECT * FROM gafanhotos WHERE sexo = 'F' AND nacionalidade = 'Brasil' AND nome LIKE 'J%'; 
+
+/*5- Lista com nome e nacionalidade dos homens que tem Silva no nome, não nasceram no Brasil e pesam menos de 100Kg*/
+SELECT nome, nacionalidade FROM gafanhotos WHERE sexo = 'M' AND nome LIKE '%Silva%' AND nacionalidade <> 'Brasil' AND peso < 100;
+
+/*6- Maior altura entre os gafanhotos que moram no Brasil*/
+SELECT max(altura) FROM gafanhotos WHERE sexo = 'M' AND nacionalidade = 'Brasil';
+
+/*7- Média de peso dos gafanhotos cadastrados*/
+SELECT avg(peso) FROM gafanhotos;
+
+/*8- Menor peso entre as mulheres que nasceram fora do Brasil e entre 01/01/1990*e 31/12/2000*/
+SELECT min(peso) FROM gafanhotos WHERE sexo = 'F' AND nacionalidade <> 'Brasil' AND nascimento BETWEEN '1990-01-01' AND '2000-12-31';
+
+/*9- Quantas mulheres tem mais de 1.90 de altura*/
+SELECT count(*) FROM gafanhotos WHERE sexo = 'F' AND altura > 1.90;
 
 
 
