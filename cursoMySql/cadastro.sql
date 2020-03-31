@@ -307,6 +307,61 @@ SELECT altura, count(*) FROM gafanhotos
 WHERE peso > '100' AND altura > (SELECT avg(altura) FROM gafanhotos) group by altura;
 
 
+/*Aula 15**/
+
+describe gafanhotos;
+
+describe gafanhotos;
+
+alter table gafanhotos 
+add column cursopreferido int; /*adicinando tabela cursopreferido  que será a chave estrangeira*/
+
+alter table gafanhotos 
+add foreign key (cursopreferido)
+references cursos(idcurso); /*cursopreferido da tablela gafanhotos está sendo ligado com a coluna idcurso da 
+ tabela cursos*/
+ 
+select * from gafanhotos;
+select * from cursos;
+ 
+update gafanhotos set cursopreferido = '6' where id = '1';/*seleciona como preferido do gafanhoto com id = 1
+o curso com id 6*/
+
+select nome, cursopreferido from gafanhotos;
+
+select nome,ano from cursos;
+
+select gafanhotos.nome, cursos.nome, cursos.ano 
+from gafanhotos inner join cursos on cursos.idcurso = gafanhotos.cursopreferido;/*fazendo a junção das duas tabelas
+usando o comando inner join*/
+
+select gafanhotos.nome, cursos.nome, cursos.ano 
+from gafanhotos right outer join cursos on cursos.idcurso = gafanhotos.cursopreferido;
+
+
+/*Aula 16*/
+
+/*Juntando 3 tabelas*/
+create table assiste(
+	id int not null auto_increment,
+    data date,
+    idgafanhoto int,
+    idcurso int,
+    primary key (id),
+    foreign key (idgafanhoto) references gafanhotos(id),
+    foreign key (idcurso) references cursos(idcurso)
+)default charset = utf8;
+
+insert into assiste values
+(default,'2014-03-01','1','2');
+
+select * from assiste;
+
+select g.nome, c.nome from gafanhotos g
+join assiste a
+on g.id = a.idgafanhoto
+join cursos c 
+on c.idcurso = a.idcurso;
 
 /*
 Comandos DDL: 
